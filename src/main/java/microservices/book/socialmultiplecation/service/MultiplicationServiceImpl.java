@@ -3,7 +3,6 @@ package microservices.book.socialmultiplecation.service;
 import microservices.book.socialmultiplecation.domain.Multiplication;
 import microservices.book.socialmultiplecation.domain.MultiplicationResultAttempt;
 import microservices.book.socialmultiplecation.domain.User;
-import microservices.book.socialmultiplecation.respository.MultiplicationRepository;
 import microservices.book.socialmultiplecation.respository.MultiplicationResultAttemptRepository;
 import microservices.book.socialmultiplecation.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.beans.Transient;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -64,4 +64,11 @@ public class MultiplicationServiceImpl implements MultiplicationService{
         attemptRepository.save(checkdAttempt);
         return correct;
     }
+
+    @Override
+    public List<MultiplicationResultAttempt> getStatsForUser(String userAlias)
+    {
+        return attemptRepository.findTop5ByUserAliasOrderByIdDesc(userAlias);
+    }
+
 }

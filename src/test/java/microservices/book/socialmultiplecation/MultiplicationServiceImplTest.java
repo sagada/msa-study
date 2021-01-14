@@ -9,6 +9,7 @@ import microservices.book.socialmultiplecation.service.MultiplicationServiceImpl
 import microservices.book.socialmultiplecation.service.RandomGeneratorService;
 import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -16,6 +17,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -61,6 +64,28 @@ public class MultiplicationServiceImplTest {
         // assert
         assertThat(attemptResult).isTrue();
         verify(attemptRepository).save(verifiedAttempt);
+    }
+
+    @Test
+    public void retriveStatsTest()
+    {
+        // given
+        Multiplication multiplication = new Multiplication(50 , 60);
+        User user = new User("Jone_doe");
+
+        MultiplicationResultAttempt attempt1 = new MultiplicationResultAttempt(user, multiplication, 3000, false);
+        MultiplicationResultAttempt attempt2 = new MultiplicationResultAttempt(user, multiplication, 3051, false);
+
+        List<MultiplicationResultAttempt> lastestAttempts = Lists.newArrayList(attempt1, attempt2);
+        given(userRepository.findByAlias("jon")).willReturn(Optional.empty());
+        given(attemptRepository.findTop5ByUserAliasOrderByIdDesc("jon")).willReturn(lastestAttempts);
+
+
+        // when
+        List<MultiplicationResultAttempt> last = multiplicationServiceImpl.getStatsForUser("jon");
+
+        //then
+        assertThat(last).isEqualTo(lastestAttempts);
     }
 
 }
