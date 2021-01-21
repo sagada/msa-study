@@ -1,4 +1,4 @@
-package microservices.book.socialmultiplecation.domain;
+package microservices.book.socialmultiplication.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 /*
  * 사용자 정보를 저장하는 클래스
  */
-@ToString
+@ToString(of = {"id", "alias"})
 @Getter
 @RequiredArgsConstructor
 @EqualsAndHashCode
@@ -27,7 +27,7 @@ public final class User {
 
     private final String alias;
 
-    protected User() {
+    public User() {
         alias = null;
     }
 }

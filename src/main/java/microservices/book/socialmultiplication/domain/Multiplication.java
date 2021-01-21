@@ -1,4 +1,4 @@
-package microservices.book.socialmultiplecation.domain;
+package microservices.book.socialmultiplication.domain;
 
 import lombok.*;
 
@@ -23,10 +23,12 @@ public final class Multiplication {
     private int factorA;
     private int factorB;
 
-    protected Multiplication() {
+    protected Multiplication()
+    {
     }
 
-    public Multiplication(int factorA, int factorB) {
+    public Multiplication(int factorA, int factorB)
+    {
         this.factorA = factorA;
         this.factorB = factorB;
     }

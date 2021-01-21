@@ -1,17 +1,16 @@
-package microservices.book.socialmultiplecation;
+package microservices.book.socialmultiplication;
 
-import microservices.book.socialmultiplecation.service.RandomGeneratorServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
+import microservices.book.socialmultiplication.service.RandomGeneratorServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
+@SpringBootTest
 public class RandomGeneratorServiceImplTest {
     private RandomGeneratorServiceImpl randomGeneratorService;
 
-    @BeforeEach
     public void setUp(){
         randomGeneratorService = new RandomGeneratorServiceImpl();
     }

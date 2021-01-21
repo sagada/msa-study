@@ -1,9 +1,11 @@
-package microservices.book.socialmultiplecation.service;
+package microservices.book.socialmultiplication.service;
 
-import microservices.book.socialmultiplecation.domain.Multiplication;
-import microservices.book.socialmultiplecation.domain.MultiplicationResultAttempt;
+
+import microservices.book.socialmultiplication.domain.Multiplication;
+import microservices.book.socialmultiplication.domain.MultiplicationResultAttempt;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MultiplicationService {
     /*
@@ -20,4 +22,5 @@ public interface MultiplicationService {
 
     List<MultiplicationResultAttempt> getStatsForUser(String userAlias);
 
+    Optional<MultiplicationResultAttempt> getResultById(Long resultId);
 }
