@@ -39,7 +39,6 @@ public class MultiplicationServiceImpl implements MultiplicationService {
     @Override
     public Multiplication createRandomMultiplication()
     {
-        System.out.println("multiplications createRandomMultiplication");
         int factorA = randomGeneratorService.generateRandomFactor();
         int factorB = randomGeneratorService.generateRandomFactor();
         return new Multiplication(factorA, factorB);
