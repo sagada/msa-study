@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-/*
+/**
  * 애플리케이션에서 곱셈을 나타내는 클래스 (a * b)
  */
 @ToString
