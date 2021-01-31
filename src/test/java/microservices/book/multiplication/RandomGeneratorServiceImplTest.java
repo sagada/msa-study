@@ -1,7 +1,8 @@
-package microservices.book.socialmultiplication;
+package microservices.book.multiplication;
 
-import microservices.book.socialmultiplication.service.RandomGeneratorServiceImpl;
-import org.junit.jupiter.api.Test;
+import microservices.book.multiplication.service.RandomGeneratorServiceImpl;
+
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;

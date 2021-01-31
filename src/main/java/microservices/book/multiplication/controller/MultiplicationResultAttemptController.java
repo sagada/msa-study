@@ -55,7 +55,7 @@ public class MultiplicationResultAttemptController {
 
     @GetMapping("/{resultId}")
     public ResponseEntity<MultiplicationResultAttempt> getResultById(final @PathVariable("resultId") Long resultId){
-        return ResponseEntity.ok(multiplicationService.getResultById(resultId).orElseThrow(()-> new IllegalArgumentException("없dma")));
+        return ResponseEntity.ok(multiplicationService.getResultById(resultId));
     }
 
 }
