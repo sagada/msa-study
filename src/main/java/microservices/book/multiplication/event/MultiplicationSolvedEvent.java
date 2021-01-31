@@ -1,10 +1,10 @@
-package microservices.book.socialmultiplication.event;
+package microservices.book.multiplication.event;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import microservices.book.socialmultiplication.domain.Multiplication;
+import microservices.book.multiplication.domain.Multiplication;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
-package microservices.book.socialmultiplication;
+package microservices.book.multiplication;
 
-import microservices.book.socialmultiplication.domain.Multiplication;
-import microservices.book.socialmultiplication.service.MultiplicationService;
+import microservices.book.multiplication.domain.Multiplication;
+import microservices.book.multiplication.service.MultiplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

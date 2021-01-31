@@ -1,4 +1,4 @@
-package microservices.book.socialmultiplication;
+package microservices.book.multiplication;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

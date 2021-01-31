@@ -1,4 +1,4 @@
-package microservices.book.socialmultiplication.domain;
+package microservices.book.multiplication.domain;
 
 import lombok.*;
 
@@ -7,29 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+
 /**
  * 애플리케이션에서 곱셈을 나타내는 클래스 (a * b)
  */
-@ToString
+@RequiredArgsConstructor
 @Getter
+@ToString
 @EqualsAndHashCode
 @Entity
 public final class Multiplication {
 
     @Id
     @GeneratedValue
-    @Column(name = "multiplication_id")
+    @Column(name = "MULTIPLICATION_ID")
     private Long id;
-    private int factorA;
-    private int factorB;
 
-    protected Multiplication()
-    {
+    // 두 인수
+    private final int factorA;
+    private final int factorB;
+
+    // JSON/JPA 를 위한 빈 설정
+    Multiplication() {
+        this(0, 0);
     }
 
-    public Multiplication(int factorA, int factorB)
-    {
-        this.factorA = factorA;
-        this.factorB = factorB;
-    }
 }

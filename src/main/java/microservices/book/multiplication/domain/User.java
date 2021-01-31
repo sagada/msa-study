@@ -1,4 +1,4 @@
-package microservices.book.socialmultiplication.domain;
+package microservices.book.multiplication.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

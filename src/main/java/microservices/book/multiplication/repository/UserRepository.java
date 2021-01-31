@@ -1,7 +1,7 @@
-package microservices.book.socialmultiplication.respository;
+package microservices.book.multiplication.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import microservices.book.socialmultiplication.domain.User;
+import microservices.book.multiplication.domain.User;
 import java.util.Optional;
 
 /**

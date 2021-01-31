@@ -1,7 +1,7 @@
-package microservices.book.socialmultiplication.respository;
+package microservices.book.multiplication.repository;
 
 
-import microservices.book.socialmultiplication.domain.MultiplicationResultAttempt;
+import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

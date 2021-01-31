@@ -1,61 +1,57 @@
-package microservices.book.socialmultiplication.controller;
-
+package microservices.book.multiplication.controller;
 import lombok.extern.slf4j.Slf4j;
-import microservices.book.socialmultiplication.domain.MultiplicationResultAttempt;
-import microservices.book.socialmultiplication.domain.User;
-import microservices.book.socialmultiplication.respository.UserRepository;
-import microservices.book.socialmultiplication.service.MultiplicationService;
+import microservices.book.multiplication.domain.MultiplicationResultAttempt;
+import microservices.book.multiplication.service.MultiplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 사용자가 POST 로 답안을 전송하도록 REST API 를 제공하는 클래스
+ */
 @Slf4j
 @RestController
 @RequestMapping("/results")
-public class MultiplicationResultAttemptController {
+final class MultiplicationResultAttemptController {
 
     private final MultiplicationService multiplicationService;
-    private final UserRepository userRepository;
+
+    private final int serverPort;
 
     @Autowired
-    public MultiplicationResultAttemptController(MultiplicationService multiplicationService, UserRepository userRepository)
-    {
+    MultiplicationResultAttemptController(
+            final MultiplicationService multiplicationService,
+            @Value("${server.port}") int serverPort) {
         this.multiplicationService = multiplicationService;
-        this.userRepository = userRepository;
+        this.serverPort = serverPort;
     }
 
     @PostMapping
-    ResponseEntity<MultiplicationResultAttempt> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt)
-    {
-        log.info("user Alias  {} ", multiplicationResultAttempt.getUser().getAlias());
-
-        User findUser = userRepository.findByAlias(multiplicationResultAttempt.getUser().getAlias())
-                .orElseThrow(()-> new IllegalArgumentException("없는 유저입니다."));
-
-        boolean isCorrect = multiplicationService.checkAttempt(multiplicationResultAttempt);
-
-        MultiplicationResultAttempt attemptCopy = new MultiplicationResultAttempt(
-                findUser,
-                multiplicationResultAttempt.getMultiplication(),
-                multiplicationResultAttempt.getResultAttempt(),
-                isCorrect
+    ResponseEntity<MultiplicationResultAttempt> postResult(
+            final @RequestBody MultiplicationResultAttempt
+                    multiplicationResultAttempt) {
+        return ResponseEntity.ok(
+                multiplicationService.checkAttempt(multiplicationResultAttempt)
         );
-
-        return ResponseEntity.ok(attemptCopy);
     }
 
     @GetMapping
-    ResponseEntity<List<MultiplicationResultAttempt>> getStatistList(@RequestParam("alias") String alias)
-    {
-        log.info("getStatistList alias : {}", alias);
-        return ResponseEntity.ok(multiplicationService.getStatsForUser(alias));
+    ResponseEntity<List<MultiplicationResultAttempt>> getStatistics(
+            final @RequestParam("alias") String alias) {
+        return ResponseEntity.ok(
+                multiplicationService.getStatsForUser(alias)
+        );
     }
 
     @GetMapping("/{resultId}")
-    public ResponseEntity<MultiplicationResultAttempt> getResultById(final @PathVariable("resultId") Long resultId){
-        return ResponseEntity.ok(multiplicationService.getResultById(resultId));
+    ResponseEntity<MultiplicationResultAttempt> getResultById(final @PathVariable("resultId") Long resultId) {
+        log.info("조회 결과 {} 조회한 서버 @ {}", resultId, serverPort);
+        return ResponseEntity.ok(
+                multiplicationService.getResultById(resultId)
+        );
     }
 
 }

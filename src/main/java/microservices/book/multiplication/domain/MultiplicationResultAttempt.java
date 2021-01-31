@@ -1,12 +1,12 @@
-package microservices.book.socialmultiplication.domain;
-
-import lombok.*;
+package microservices.book.multiplication.domain;
 
 import javax.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-/**
- {@link User}가 {@link microservices.book.socialmultiplication.domain.Multiplication}을 계산한 답안을 정의한 클래스
- */
+
 /**
  * {@link User}가 {@link Multiplication}을 계산한 답안을 정의한 클래스
  */
@@ -33,7 +33,7 @@ public final class MultiplicationResultAttempt {
     private final boolean correct;
 
     // JSON/JPA 를 위한 빈 생성자
-    public MultiplicationResultAttempt() {
+    MultiplicationResultAttempt() {
         user = null;
         multiplication = null;
         resultAttempt = -1;
